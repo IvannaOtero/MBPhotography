@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This project is a professional website for **MBPhotography**, a family-owned photography business based in Fircrest, Washington.
+This project is a website for **MBPhotography**, a family-owned photography business based in the PNW.
 
 The website is designed to help showcase photography work, provide information about the business, allow potential clients to get in touch, and make it easy for customers to schedule photography sessions online.
 
