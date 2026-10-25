@@ -6,8 +6,6 @@
     <title>@ViewData["Title"] - MBPhotography</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MBPhotography.styles.css" asp-append-version="true" />
 </head>
@@ -15,33 +13,43 @@
     @{
         var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
         var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
-        string Active(string controller, string action = null) =>
-            string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase)
-            && (action == null || string.Equals(currentAction, action, StringComparison.OrdinalIgnoreCase)) ? "active" : "";
-        string Current(string controller, string action = null) => Active(controller, action) == "active" ? "page" : null;
+        var isPortfolioPage = currentController == "Home" && currentAction == "Portfolio";
+        var isPackagesPage = currentController == "Packages";
+        var isSchedulePage = currentController == "Appointments";
+        var isContactPage = currentController == "Home" && currentAction == "Contact";
+        var isAboutPage = currentController == "Home" && currentAction == "About";
     }
-    <header class="site-header">
-        <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand site-logo d-lg-none" asp-area="" asp-controller="Home" asp-action="Index">mbphoto</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav"
+    <header>
+        <nav class="site-header navbar navbar-expand-lg navbar-light" aria-label="Main navigation">
+            <div class="site-header__inner container-fluid">
+                <button class="navbar-toggler site-header__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavigation" aria-controls="primaryNavigation"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav site-nav-side justify-content-lg-end">
-                        <li class="nav-item"><a class="nav-link @Active("Home", "Portfolio")" aria-current="@Current("Home", "Portfolio")" asp-area="" asp-controller="Home" asp-action="Portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link @Active("Packages")" aria-current="@Current("Packages")" asp-area="" asp-controller="Packages" asp-action="Index">Packages</a></li>
-                        <li class="nav-item"><a class="nav-link @Active("Appointments")" aria-current="@Current("Appointments")" asp-area="" asp-controller="Appointments" asp-action="Create">Schedule</a></li>
+                <div class="navbar-collapse collapse" id="primaryNavigation">
+                    <ul class="navbar-nav site-header__links site-header__links--left">
+                        <li class="nav-item">
+                            <a class="nav-link @(isPortfolioPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Portfolio" aria-current="@(isPortfolioPage ? "page" : null)">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(isPackagesPage ? "active" : "")" asp-area="" asp-controller="Packages" asp-action="Index" aria-current="@(isPackagesPage ? "page" : null)">Packages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(isSchedulePage ? "active" : "")" asp-area="" asp-controller="Appointments" asp-action="Create" aria-current="@(isSchedulePage ? "page" : null)">Schedule</a>
+                        </li>
                     </ul>
-                    <a class="navbar-brand site-logo d-none d-lg-block mx-lg-4" asp-area="" asp-controller="Home" asp-action="Index">mbphoto</a>
-                    <ul class="navbar-nav site-nav-side justify-content-lg-start">
-                        <li class="nav-item"><a class="nav-link @Active("Home", "Contact")" aria-current="@Current("Home", "Contact")" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link @Active("Home", "About")" aria-current="@Current("Home", "About")" asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                    <a class="navbar-brand site-header__brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="mbphoto home">mbphoto</a>
+                    <ul class="navbar-nav site-header__links site-header__links--right">
+                        <li class="nav-item">
+                            <a class="nav-link @(isContactPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Contact" aria-current="@(isContactPage ? "page" : null)">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(isAboutPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="About" aria-current="@(isAboutPage ? "page" : null)">About Us</a>
+                        </li>
+                        <li class="nav-item site-header__account">
+                            <partial name="_LoginPartial" />
+                        </li>
                     </ul>
-                    <div class="site-login ms-lg-auto">
-                        <partial name="_LoginPartial" />
-                    </div>
                 </div>
             </div>
         </nav>
