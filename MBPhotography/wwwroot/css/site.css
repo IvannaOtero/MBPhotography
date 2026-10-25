@@ -29,3 +29,56 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.site-header {
+  background-color: #f1ecd9;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='120' viewBox='0 0 240 120' fill='none' stroke='%23d9d6c8' stroke-width='3' stroke-linecap='round'><path d='M20 90c10-40 30-60 55-70-5 30-20 55-55 70z'/><circle cx='120' cy='35' r='9'/><path d='M120 15v-6M120 55v6M100 35h-6M140 35h6M106 21l-4-4M134 49l4 4M134 21l4-4M106 49l-4 4'/><path d='M165 100c15-30 35-45 60-50-8 25-25 42-60 50z'/><path d='M90 100q10-15 20 0t20 0'/></svg>");
+  background-size: 240px 120px;
+  border-bottom: 1px solid #ddd8c4;
+  margin-bottom: 1rem;
+}
+
+.site-nav .site-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #5b82cc;
+  text-align: center;
+}
+
+.site-nav .nav-link,
+.site-nav .btn-link {
+  font-family: 'Fredoka', 'Segoe UI', sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #5b82cc;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+
+.site-nav .nav-link:hover,
+.site-nav .nav-link:focus-visible,
+.site-nav .btn-link:hover {
+  color: #3a5ca8;
+  border-bottom-color: #9fb6e6;
+}
+
+.site-nav .nav-link.active {
+  color: #3a5ca8;
+  border-bottom-color: #3a5ca8;
+}
+
+.site-nav .navbar-toggler {
+  border-color: #5b82cc;
+}
+
+@media (min-width: 992px) {
+  .site-nav .navbar-collapse {
+    align-items: center;
+  }
+  .site-nav .site-nav-side {
+    flex: 1 1 0;
+  }
+  .site-nav .site-login {
+    flex: 0 0 auto;
+  }
+}

@@ -6,28 +6,42 @@
     <title>@ViewData["Title"] - MBPhotography</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MBPhotography.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        string Active(string controller, string action = null) =>
+            string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase)
+            && (action == null || string.Equals(currentAction, action, StringComparison.OrdinalIgnoreCase)) ? "active" : "";
+        string Current(string controller, string action = null) => Active(controller, action) == "active" ? "page" : null;
+    }
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MBPhotography</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand site-logo d-lg-none" asp-area="" asp-controller="Home" asp-action="Index">mbphoto</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav site-nav-side justify-content-lg-end">
+                        <li class="nav-item"><a class="nav-link @Active("Home", "Portfolio")" aria-current="@Current("Home", "Portfolio")" asp-area="" asp-controller="Home" asp-action="Portfolio">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link @Active("Packages")" aria-current="@Current("Packages")" asp-area="" asp-controller="Packages" asp-action="Index">Packages</a></li>
+                        <li class="nav-item"><a class="nav-link @Active("Appointments")" aria-current="@Current("Appointments")" asp-area="" asp-controller="Appointments" asp-action="Create">Schedule</a></li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <a class="navbar-brand site-logo d-none d-lg-block mx-lg-4" asp-area="" asp-controller="Home" asp-action="Index">mbphoto</a>
+                    <ul class="navbar-nav site-nav-side justify-content-lg-start">
+                        <li class="nav-item"><a class="nav-link @Active("Home", "Contact")" aria-current="@Current("Home", "Contact")" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link @Active("Home", "About")" aria-current="@Current("Home", "About")" asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                    </ul>
+                    <div class="site-login ms-lg-auto">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
         </nav>
