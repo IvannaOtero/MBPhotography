@@ -13,7 +13,7 @@
     @{
         var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
         var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
-        var isPortfolioPage = currentController == "Home" && currentAction == "Index";
+        var isPortfolioPage = currentController == "Home" && currentAction == "Portfolio";
         var isPackagesPage = currentController == "Packages";
         var isSchedulePage = currentController == "Appointments";
         var isContactPage = currentController == "Home" && currentAction == "Contact";
@@ -29,7 +29,7 @@
                 <div class="navbar-collapse collapse" id="primaryNavigation">
                     <ul class="navbar-nav site-header__links site-header__links--left">
                         <li class="nav-item">
-                            <a class="nav-link @(isPortfolioPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="portfolio" aria-current="@(isPortfolioPage ? "page" : null)">Portfolio</a>
+                            <a class="nav-link @(isPortfolioPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Portfolio" aria-current="@(isPortfolioPage ? "page" : null)">Portfolio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @(isPackagesPage ? "active" : "")" asp-area="" asp-controller="Packages" asp-action="Index" aria-current="@(isPackagesPage ? "page" : null)">Packages</a>
@@ -41,10 +41,10 @@
                     <a class="navbar-brand site-header__brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="mbphoto home">mbphoto</a>
                     <ul class="navbar-nav site-header__links site-header__links--right">
                         <li class="nav-item">
-                            <a class="nav-link @(isContactPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="contact" aria-current="@(isContactPage ? "page" : null)">Contact</a>
+                            <a class="nav-link @(isContactPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Contact" aria-current="@(isContactPage ? "page" : null)">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(isAboutPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="about" aria-current="@(isAboutPage ? "page" : null)">About Us</a>
+                            <a class="nav-link @(isAboutPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="About" aria-current="@(isAboutPage ? "page" : null)">About Us</a>
                         </li>
                         <li class="nav-item site-header__account">
                             <partial name="_LoginPartial" />
