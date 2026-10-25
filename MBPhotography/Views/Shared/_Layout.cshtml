@@ -10,24 +10,46 @@
     <link rel="stylesheet" href="~/MBPhotography.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var isPortfolioPage = currentController == "Home" && currentAction == "Index";
+        var isPackagesPage = currentController == "Packages";
+        var isSchedulePage = currentController == "Appointments";
+        var isContactPage = currentController == "Home" && currentAction == "Contact";
+        var isAboutPage = currentController == "Home" && currentAction == "About";
+    }
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MBPhotography</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        <nav class="site-header navbar navbar-expand-lg navbar-light" aria-label="Main navigation">
+            <div class="site-header__inner container-fluid">
+                <button class="navbar-toggler site-header__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavigation" aria-controls="primaryNavigation"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse" id="primaryNavigation">
+                    <ul class="navbar-nav site-header__links site-header__links--left">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(isPortfolioPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="portfolio" aria-current="@(isPortfolioPage ? "page" : null)">Portfolio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link @(isPackagesPage ? "active" : "")" asp-area="" asp-controller="Packages" asp-action="Index" aria-current="@(isPackagesPage ? "page" : null)">Packages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(isSchedulePage ? "active" : "")" asp-area="" asp-controller="Appointments" asp-action="Create" aria-current="@(isSchedulePage ? "page" : null)">Schedule</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <a class="navbar-brand site-header__brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="mbphoto home">mbphoto</a>
+                    <ul class="navbar-nav site-header__links site-header__links--right">
+                        <li class="nav-item">
+                            <a class="nav-link @(isContactPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="contact" aria-current="@(isContactPage ? "page" : null)">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(isAboutPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="about" aria-current="@(isAboutPage ? "page" : null)">About Us</a>
+                        </li>
+                        <li class="nav-item site-header__account">
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
