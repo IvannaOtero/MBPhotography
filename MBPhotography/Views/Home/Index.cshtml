@@ -1,8 +1,50 @@
-﻿@{
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment Env
+@{
     ViewData["Title"] = "Home Page";
+    var folder = System.IO.Path.Combine(Env.WebRootPath, "Pictures", "homepagecarousel");
+    var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+    var slides = System.IO.Directory.Exists(folder)
+        ? System.IO.Directory.GetFiles(folder)
+            .Where(f => allowed.Contains(System.IO.Path.GetExtension(f).ToLowerInvariant()))
+            .OrderBy(f => f, StringComparer.OrdinalIgnoreCase)
+            .Take(4)
+            .Select(System.IO.Path.GetFileName)
+            .ToList()
+        : new List<string?>();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (slides.Count > 0)
+{
+    <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+            @for (var i = 0; i < slides.Count; i++)
+            {
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="@i"
+                        class="@(i == 0 ? "active" : null)" aria-current="@(i == 0 ? "true" : null)"
+                        aria-label="Slide @(i + 1)"></button>
+            }
+        </div>
+        <div class="carousel-inner">
+            @for (var i = 0; i < slides.Count; i++)
+            {
+                <div class="carousel-item @(i == 0 ? "active" : null)">
+                    <img src="~/Pictures/homepagecarousel/@slides[i]" class="d-block w-100" alt="Featured photography @(i + 1)" />
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+    </div>
+}
