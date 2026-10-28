@@ -359,3 +359,18 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.hero-carousel {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: 100vh;
+}
+
+.hero-carousel .carousel-inner,
+.hero-carousel .carousel-item {
+    height: 100%;
+}
+
+.hero-carousel .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
