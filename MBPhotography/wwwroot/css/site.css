@@ -374,3 +374,11 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+.hero-carousel .carousel-item::after {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .3);
+    content: "";
+    pointer-events: none;
+}
