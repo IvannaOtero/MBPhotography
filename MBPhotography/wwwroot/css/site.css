@@ -360,9 +360,27 @@ body {
   text-align: start;
 }
 .hero-carousel {
+    position: relative;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     height: 100vh;
+}
+
+.hero-carousel__logo {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 600;
+    letter-spacing: .04em;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
 }
 
 .hero-carousel .carousel-inner,
