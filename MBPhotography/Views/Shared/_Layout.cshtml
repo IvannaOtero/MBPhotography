@@ -38,7 +38,9 @@
                             <a class="nav-link @(isSchedulePage ? "active" : "")" asp-area="" asp-controller="Appointments" asp-action="Create" aria-current="@(isSchedulePage ? "page" : null)">Schedule</a>
                         </li>
                     </ul>
-                    <a class="navbar-brand site-header__brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="mbphoto home">mbphoto</a>
+                    <a class="navbar-brand site-header__brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="mbphoto home">
+                        <img src="~/Pictures/Logo/image-removebg-preview.png" asp-append-version="true" alt="" />
+                    </a>
                     <ul class="navbar-nav site-header__links site-header__links--right">
                         <li class="nav-item">
                             <a class="nav-link @(isContactPage ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Contact" aria-current="@(isContactPage ? "page" : null)">Contact</a>

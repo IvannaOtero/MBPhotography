@@ -267,11 +267,12 @@ body {
   grid-column: 2;
   grid-row: 1;
   margin: 0;
-  color: #456da9;
-  font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.3rem);
-  font-weight: 600;
-  letter-spacing: .02em;
+}
+
+.site-header__brand img {
+  display: block;
+  max-height: clamp(2.5rem, 5vw, 3.5rem);
+  width: auto;
 }
 
 .site-header__account {
