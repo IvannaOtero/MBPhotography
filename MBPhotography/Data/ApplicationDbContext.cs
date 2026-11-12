@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MBPhotography.Models;
+using MBPhotography.Data.Models;
 
 namespace MBPhotography.Data;
 

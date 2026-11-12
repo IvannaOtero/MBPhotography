@@ -1,4 +1,4 @@
-using MBPhotography.Models;
+using MBPhotography.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

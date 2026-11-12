@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MBPhotography.Data;
-using MBPhotography.Models;
+using MBPhotography.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,12 +18,34 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Ensure database exists and apply migrations (creates DB on first run).
+// Initialize database only when explicitly enabled for non-development environments.
 using (var scope = app.Services.CreateScope())
 {
+    var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    // Ensure database is created. If you prefer migrations, run 'dotnet ef migrations add Initial' and 'dotnet ef database update'.
-    db.Database.EnsureCreated();
+    var runMigrationsOnStartup = app.Environment.IsDevelopment() ||
+                                 builder.Configuration.GetValue("Database:ApplyMigrationsOnStartup", false);
+
+    if (runMigrationsOnStartup)
+    {
+        try
+        {
+            db.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Database migration failed during startup.");
+
+            if (app.Environment.IsDevelopment())
+            {
+                throw;
+            }
+        }
+    }
+    else
+    {
+        logger.LogInformation("Skipping database migration at startup. Set Database:ApplyMigrationsOnStartup=true to enable.");
+    }
 }
 
 // Configure the HTTP request pipeline.

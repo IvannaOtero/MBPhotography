@@ -369,17 +369,6 @@ body {
     height: 100vh;
 }
 
-.hero-carousel__logo {
-    position: absolute;
-    z-index: 3;
-    top: 50%;
-    left: 50%;
-    width: min(70vw, 32rem);
-    height: auto;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-}
-
 .hero-carousel .carousel-inner,
 .hero-carousel .carousel-item {
     height: 100%;

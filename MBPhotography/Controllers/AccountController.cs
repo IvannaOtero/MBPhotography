@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using MBPhotography.Models;
 using System.Threading.Tasks;
+using MBPhotography.Data.Models;
 
 namespace MBPhotography.Controllers
 {

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using MBPhotography.Data;
-using MBPhotography.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
+using MBPhotography.Data.Models;
 
 namespace MBPhotography.Controllers.Api
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MBPhotography.Data;
-using MBPhotography.Models;
+using MBPhotography.Data.Models;
 using System.Threading.Tasks;
 using System.Linq;
 

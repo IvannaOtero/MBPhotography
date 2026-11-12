@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MBPhotography.Data;
-using MBPhotography.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using MBPhotography.Data.Models;
 
 namespace MBPhotography.Controllers
 {
