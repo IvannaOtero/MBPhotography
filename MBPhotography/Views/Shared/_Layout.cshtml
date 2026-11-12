@@ -35,7 +35,7 @@
                             <a class="nav-link @(isPackagesPage ? "active" : "")" asp-area="" asp-controller="Packages" asp-action="Index" aria-current="@(isPackagesPage ? "page" : null)">Packages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(isSchedulePage ? "active" : "")" asp-area="" asp-controller="Appointments" asp-action="Create" aria-current="@(isSchedulePage ? "page" : null)">Schedule</a>
+                            <a class="nav-link @(isSchedulePage ? "active" : "")" asp-area="" asp-controller="Appointments" asp-action="Create" aria-current="@(isSchedulePage ? "page" : null)">Book a Session</a>
                         </li>
                     </ul>
                     <a class="navbar-brand site-header__brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="mbphoto home">
@@ -66,7 +66,7 @@
         <div class="site-footer__main">
             <div class="site-footer__inner">
                 <section class="site-footer__section" aria-labelledby="footer-social-heading">
-                    <h2 id="footer-social-heading">Follow Along</h2>
+                    <h2 id="footer-social-heading">Let's Connect</h2>
                     <a class="site-footer__instagram" href="https://www.instagram.com/mbphoto/" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="site-footer__icon-dot" cx="18" cy="6" r="1"></circle></svg>
                         <span>@@mbphoto</span>
@@ -85,10 +85,10 @@
                 </section>
 
                 <section class="site-footer__section" aria-labelledby="footer-areas-heading">
-                    <h2 id="footer-areas-heading">Areas We Serve</h2>
-                    <p>Serving the Pacific Northwest</p>
+                    <h2 id="footer-areas-heading">Where We Work</h2>
+                    <p>Proudly serving the Pacific Northwest</p>
                     <details class="site-footer__areas">
-                        <summary>View service areas</summary>
+                        <summary>See service areas</summary>
                         <ul>
                             <li>Washington</li>
                             <li>Oregon</li>
@@ -97,26 +97,26 @@
                 </section>
 
                 <section class="site-footer__section" aria-labelledby="footer-contact-heading">
-                    <h2 id="footer-contact-heading">Get in Touch</h2>
-                    <p>Have a question or want to book a session?</p>
+                    <h2 id="footer-contact-heading">Say Hello</h2>
+                    <p>Questions? We'd be happy to help.</p>
                     <a asp-area="" asp-controller="Home" asp-action="Contact">Contact us</a>
-                    <p class="site-footer__contact-note">We'd love to hear from you about your session.</p>
+                    <p class="site-footer__contact-note">Tell us what you're planning and we'll help bring it to life.</p>
                 </section>
 
                 <nav class="site-footer__section" aria-labelledby="footer-links-heading">
-                    <h2 id="footer-links-heading">Explore</h2>
+                    <h2 id="footer-links-heading">Explore More</h2>
                     <ul class="site-footer__links">
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Portfolio">Portfolio</a></li>
                         <li><a asp-area="" asp-controller="Packages" asp-action="Index">Packages</a></li>
-                        <li><a asp-area="" asp-controller="Appointments" asp-action="Create">Schedule</a></li>
+                        <li><a asp-area="" asp-controller="Appointments" asp-action="Create">Book a Session</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
-        <div class="site-footer__divider" aria-hidden="true"><span>✿</span><span class="site-footer__divider-line"></span><span>Made with love in the PNW</span><span class="site-footer__divider-line"></span><span>✿</span></div>
+        <div class="site-footer__divider" aria-hidden="true"><span>✿</span><span class="site-footer__divider-line"></span><span>Made with care in the PNW</span><span class="site-footer__divider-line"></span><span>✿</span></div>
         <div class="site-footer__bottom">
             <span>&copy; @DateTime.Now.Year MBPhotography. All rights reserved.</span>
             <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>

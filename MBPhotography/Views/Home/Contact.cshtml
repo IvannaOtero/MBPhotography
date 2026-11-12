@@ -1,3 +1,19 @@
 ﻿@{
+	ViewData["Title"] = "Contact";
 }
+
+<section class="about-preview" aria-labelledby="contact-heading">
+	<div class="about-preview__content">
+		<p class="about-preview__eyebrow">We'd love to hear from you</p>
+		<h1 id="contact-heading">Let's plan your photo session</h1>
+		<p>Share a few details about what you're dreaming up, and we'll help you choose the best session, timeline, and package.</p>
+		<p>We reply as quickly as we can and are always happy to answer questions.</p>
+		<a class="about-preview__link" asp-controller="Appointments" asp-action="Create">Start booking</a>
+	</div>
+	<div class="about-preview__visual" aria-hidden="true">
+		<figure class="about-preview__frame about-preview__frame--main">
+			<img src="https://placehold.co/760x980/F5F2EA/8E0D1A?text=Abstract+Contact+Shape" alt="" />
+		</figure>
+	</div>
+</section>
 

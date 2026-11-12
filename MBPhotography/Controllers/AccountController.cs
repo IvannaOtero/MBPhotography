@@ -36,7 +36,7 @@ namespace MBPhotography.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            ModelState.AddModelError(string.Empty, "We couldn't sign you in with those details. Please double-check and try again.");
             return View(model);
         }
 
