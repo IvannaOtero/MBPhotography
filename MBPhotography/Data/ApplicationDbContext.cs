@@ -66,7 +66,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 var created = t.FindProperty(nameof(IAuditable.CreatedAt));
                 if (created != null)
                 {
-                    created.SetDefaultValueSql("GETUTCDATE()");
+                    created.SetDefaultValueSql("CURRENT_TIMESTAMP");
                 }
             });
     }
