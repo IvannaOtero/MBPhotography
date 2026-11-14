@@ -1,0 +1,24 @@
+.hero-carousel {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: 100vh;
+}
+
+.hero-carousel .carousel-inner,
+.hero-carousel .carousel-item {
+    height: 100%;
+}
+
+.hero-carousel .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-carousel .carousel-item::after {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .3);
+    content: "";
+    pointer-events: none;
+}

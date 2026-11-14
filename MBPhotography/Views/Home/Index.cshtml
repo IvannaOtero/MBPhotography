@@ -1,4 +1,8 @@
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment Env
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/home.css" asp-append-version="true" />
+}
+
 @{
     ViewData["Title"] = "Home";
     var folder = System.IO.Path.Combine(Env.WebRootPath, "Pictures", "homepagecarousel");
