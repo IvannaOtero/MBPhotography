@@ -1,8 +1,54 @@
+body.home-index .container {
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+body.home-index main.pb-3 {
+    padding-bottom: 0 !important;
+}
+
+body.home-index .site-header--home {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+    padding: 1.1rem clamp(1rem, 4vw, 3.25rem);
+    background: transparent;
+    background-image: none;
+    border-bottom: 0;
+}
+
+body.home-index .site-header--home .site-header__inner {
+    max-width: 1500px;
+}
+
+body.home-index .site-header--home .nav-link {
+    color: #fff;
+    text-shadow: 0 .15rem .45rem rgba(0, 0, 0, .4);
+}
+
+body.home-index .site-header--home .nav-link:hover,
+body.home-index .site-header--home .nav-link:focus-visible,
+body.home-index .site-header--home .nav-link.active {
+    color: #f4f0df;
+}
+
+body.home-index .site-header--home .site-header__brand-image {
+    filter: drop-shadow(0 .2rem .55rem rgba(0, 0, 0, .35));
+}
+
+body.home-index .site-header--home .site-header__toggle {
+    border-color: rgba(255, 255, 255, .9);
+    background-color: rgba(0, 0, 0, .2);
+}
+
 .hero-carousel {
     position: relative;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    height: min(100vh, 46rem);
+    height: min(100vh, 58rem);
 }
 
 .hero-carousel .carousel-inner,

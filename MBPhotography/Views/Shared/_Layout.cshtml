@@ -11,10 +11,11 @@
     @await RenderSectionAsync("Styles", required: false)
     <link rel="stylesheet" href="~/MBPhotography.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="@((ViewContext.RouteData.Values["controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["action"]?.ToString() == "Index") ? "home-index" : null)">
     @{
         var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
         var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var isHomePage = currentController == "Home" && currentAction == "Index";
         var isPortfolioPage = currentController == "Home" && currentAction == "Portfolio";
         var isPackagesPage = currentController == "Packages";
         var isSchedulePage = currentController == "Appointments";
@@ -22,7 +23,7 @@
         var isAboutPage = currentController == "Home" && currentAction == "About";
     }
     <header>
-        <nav class="site-header navbar navbar-expand-lg navbar-light" aria-label="Main navigation">
+        <nav class="site-header navbar navbar-expand-lg navbar-light @(isHomePage ? "site-header--home" : null)" aria-label="Main navigation">
             <div class="site-header__inner container-fluid">
                 <button class="navbar-toggler site-header__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavigation" aria-controls="primaryNavigation"
                         aria-expanded="false" aria-label="Toggle navigation">
