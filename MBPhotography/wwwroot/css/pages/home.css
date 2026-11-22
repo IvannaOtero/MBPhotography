@@ -175,6 +175,134 @@ body.home-index .site-header--home .site-header__toggle {
     clip-path: path("M50% 89% C20% 72% 5% 53% 5% 35% C5% 20% 16% 10% 30% 10% C40% 10% 47% 16% 50% 21% C53% 16% 60% 10% 70% 10% C84% 10% 95% 20% 95% 35% C95% 53% 80% 72% 50% 89% Z");
 }
 
+.packages-feed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem) clamp(2.4rem, 5vw, 4.5rem);
+    color: #f9f6ed;
+    background: linear-gradient(180deg, #181818 0%, #1f1f1f 100%);
+}
+
+.packages-feed h2 {
+    margin-bottom: clamp(1.5rem, 3vw, 2.4rem);
+    text-align: center;
+    font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 700;
+}
+
+.packages-slider {
+    position: relative;
+    max-width: 78rem;
+    margin: 0 auto;
+    padding: 0 clamp(2rem, 5vw, 4rem);
+}
+
+.packages-slider__track {
+    position: relative;
+    height: clamp(20rem, 45vw, 42rem);
+}
+
+.packages-slide {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(30rem, 76vw);
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    opacity: .24;
+    filter: saturate(.5);
+    transform: translateX(-50%) scale(.72);
+    transition: transform .55s ease, opacity .55s ease, filter .55s ease;
+}
+
+.packages-slide img {
+    display: block;
+    width: 100%;
+    height: clamp(20rem, 45vw, 42rem);
+    object-fit: cover;
+}
+
+.packages-slide__tag {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(1rem, 2vw, 1.8rem);
+    transform: translateX(-50%);
+    margin: 0;
+    padding: .45rem 1.05rem;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(0, 0, 0, .62);
+    font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: .03em;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.packages-slide.is-active {
+    z-index: 3;
+    opacity: 1;
+    filter: none;
+    transform: translateX(-50%) scale(1);
+}
+
+.packages-slide.is-active .packages-slide__tag {
+    opacity: 1;
+}
+
+.packages-slide.is-side {
+    z-index: 2;
+    opacity: .45;
+}
+
+.packages-slide.is-left {
+    transform: translateX(calc(-50% - min(22rem, 52vw))) scale(.83);
+}
+
+.packages-slide.is-right {
+    transform: translateX(calc(-50% + min(22rem, 52vw))) scale(.83);
+}
+
+.packages-slide.is-away {
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.packages-slider__control {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255, 255, 255, .14);
+    backdrop-filter: blur(2px);
+    font-size: 1.5rem;
+    line-height: 1;
+    transform: translateY(-50%);
+    transition: background-color .2s ease;
+}
+
+.packages-slider__control:hover,
+.packages-slider__control:focus-visible {
+    background: rgba(255, 255, 255, .28);
+}
+
+.packages-slider__control--prev {
+    left: .1rem;
+}
+
+.packages-slider__control--next {
+    right: .1rem;
+}
+
 @media (max-width: 991.98px) {
     .about-feed {
         grid-template-columns: 1fr;
@@ -203,6 +331,22 @@ body.home-index .site-header--home .site-header__toggle {
         left: clamp(3rem, 16vw, 6rem);
         top: clamp(10.6rem, 34vw, 13rem);
         width: clamp(12rem, 38vw, 15rem);
+    }
+
+    .packages-slider__track {
+        height: clamp(20rem, 56vw, 30rem);
+    }
+
+    .packages-slide img {
+        height: clamp(20rem, 56vw, 30rem);
+    }
+
+    .packages-slide.is-left {
+        transform: translateX(calc(-50% - min(16rem, 45vw))) scale(.82);
+    }
+
+    .packages-slide.is-right {
+        transform: translateX(calc(-50% + min(16rem, 45vw))) scale(.82);
     }
 }
 
@@ -243,5 +387,40 @@ body.home-index .site-header--home .site-header__toggle {
         left: clamp(2rem, 13vw, 3.2rem);
         top: clamp(8rem, 38vw, 10rem);
         width: clamp(9.6rem, 53vw, 12.8rem);
+    }
+
+    .packages-feed {
+        padding: 1.5rem .5rem 2.2rem;
+    }
+
+    .packages-slider {
+        padding: 0 1.8rem;
+    }
+
+    .packages-slider__track {
+        height: clamp(15rem, 80vw, 24rem);
+    }
+
+    .packages-slide {
+        width: min(18rem, 72vw);
+    }
+
+    .packages-slide img {
+        height: clamp(15rem, 80vw, 24rem);
+    }
+
+    .packages-slide.is-side {
+        opacity: .18;
+    }
+
+    .packages-slide.is-left,
+    .packages-slide.is-right {
+        transform: translateX(-50%) scale(.92);
+    }
+
+    .packages-slider__control {
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.2rem;
     }
 }
