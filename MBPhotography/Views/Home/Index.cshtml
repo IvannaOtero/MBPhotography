@@ -15,6 +15,15 @@
             .Select(System.IO.Path.GetFileName)
             .ToList()
         : new List<string?>();
+
+    var packageSlides = new[]
+    {
+        new { FileName = "petslide.png", Hashtag = "#Pets", Alt = "Pet package collage" },
+        new { FileName = "gradslide.png", Hashtag = "#GraduationDump", Alt = "Graduation package collage" },
+        new { FileName = "funslide.png", Hashtag = "#PhotoDump", Alt = "Creative photo package collage" }
+    }
+    .Where(s => System.IO.File.Exists(System.IO.Path.Combine(Env.WebRootPath, "Pictures", "SlidePackages", s.FileName)))
+    .ToList();
 }
 
 @if (slides.Count > 0)
@@ -69,5 +78,118 @@ else
         </figure>
     </div>
 </section>
+
+@if (packageSlides.Count > 0)
+{
+    <section class="packages-feed" aria-labelledby="packages-feed-heading">
+        <h2 id="packages-feed-heading">Our Packages!</h2>
+
+        <div class="packages-slider" data-packages-slider data-autoplay="true" aria-live="polite">
+            <button type="button" class="packages-slider__control packages-slider__control--prev" data-slide="prev" aria-label="Previous package slide">&#10094;</button>
+
+            <div class="packages-slider__track">
+                @for (var i = 0; i < packageSlides.Count; i++)
+                {
+                    var slide = packageSlides[i];
+                    <article class="packages-slide @(i == 0 ? "is-active" : null)" data-slide-index="@i" aria-label="Package slide @(i + 1)">
+                        <img src="~/Pictures/SlidePackages/@slide.FileName" asp-append-version="true" alt="@slide.Alt" />
+                        <p class="packages-slide__tag">@slide.Hashtag</p>
+                    </article>
+                }
+            </div>
+
+            <button type="button" class="packages-slider__control packages-slider__control--next" data-slide="next" aria-label="Next package slide">&#10095;</button>
+        </div>
+    </section>
+}
+
+@section Scripts {
+    <script>
+        (() => {
+            const slider = document.querySelector('[data-packages-slider]');
+            if (!slider) return;
+
+            const slides = Array.from(slider.querySelectorAll('.packages-slide'));
+            if (!slides.length) return;
+
+            const prevButton = slider.querySelector('[data-slide="prev"]');
+            const nextButton = slider.querySelector('[data-slide="next"]');
+            const autoplayEnabled = slider.dataset.autoplay === 'true';
+            const autoplayDelay = 3500;
+            let activeIndex = 0;
+            let autoplayId;
+
+            const getShortestOffset = (index) => {
+                const total = slides.length;
+                let offset = index - activeIndex;
+
+                if (offset > total / 2) {
+                    offset -= total;
+                } else if (offset < -total / 2) {
+                    offset += total;
+                }
+
+                return offset;
+            };
+
+            const render = () => {
+                slides.forEach((slide, index) => {
+                    const offset = getShortestOffset(index);
+
+                    slide.classList.remove('is-active', 'is-side', 'is-left', 'is-right', 'is-away');
+
+                    if (offset === 0) {
+                        slide.classList.add('is-active');
+                    } else if (Math.abs(offset) === 1) {
+                        slide.classList.add('is-side', offset < 0 ? 'is-left' : 'is-right');
+                    } else {
+                        slide.classList.add('is-away');
+                    }
+                });
+            };
+
+            const goTo = (index) => {
+                const total = slides.length;
+                activeIndex = (index + total) % total;
+                render();
+            };
+
+            const stopAutoplay = () => {
+                if (!autoplayId) return;
+                window.clearInterval(autoplayId);
+                autoplayId = undefined;
+            };
+
+            const startAutoplay = () => {
+                if (!autoplayEnabled) return;
+                stopAutoplay();
+                autoplayId = window.setInterval(() => goTo(activeIndex + 1), autoplayDelay);
+            };
+
+            prevButton?.addEventListener('click', () => {
+                goTo(activeIndex - 1);
+                startAutoplay();
+            });
+
+            nextButton?.addEventListener('click', () => {
+                goTo(activeIndex + 1);
+                startAutoplay();
+            });
+
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    goTo(index);
+                    startAutoplay();
+                });
+            });
+
+            slider.addEventListener('mouseenter', stopAutoplay);
+            slider.addEventListener('mouseleave', startAutoplay);
+
+            render();
+            startAutoplay();
+        })();
+    </script>
+}
 
 
