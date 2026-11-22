@@ -26,213 +26,137 @@
 
 .about-feed {
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
     align-items: center;
-    gap: clamp(.3rem, 1.2vw, 1rem);
+    justify-content: center;
+    gap: clamp(1.2rem, 3vw, 3rem);
     width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh;
     margin-left: calc(50% - 50vw);
-    padding: clamp(1.2rem, 3vw, 2.6rem);
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 6vw, 5rem);
     overflow: hidden;
-    color: #3e4c61;
-    background:
-        radial-gradient(circle at 80% 8%, rgba(69, 109, 169, .13) 0, rgba(69, 109, 169, 0) 42%),
-        radial-gradient(circle at 16% 92%, rgba(199, 176, 138, .22) 0, rgba(199, 176, 138, 0) 44%),
-        linear-gradient(180deg, rgba(244, 240, 223, .9) 0%, rgba(244, 240, 223, .6) 100%);
+    color: #111;
+    background-color: #f4f0df;
 }
 
 .about-feed__intro {
-    max-width: 38rem;
-    margin: 0;
+    max-width: 40rem;
+    align-self: center;
     justify-self: end;
-    padding: clamp(.95rem, 2.2vw, 1.4rem);
-    border: 1px solid rgba(69, 109, 169, .14);
-    border-radius: 1.2rem;
-    background-color: rgba(255, 255, 255, .62);
-    backdrop-filter: blur(3px);
-    box-shadow: 0 .9rem 1.8rem rgba(62, 76, 97, .12);
-}
-
-.about-feed__eyebrow {
-    margin-bottom: .5rem;
-    color: #456da9;
-    font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
-    font-size: .95rem;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
+    transform: translateX(clamp(.4rem, 1vw, 1.2rem));
 }
 
 .about-feed__intro h2 {
-    margin-bottom: .8rem;
-    color: #2f3f58;
+    margin-bottom: clamp(1rem, 3vw, 2.2rem);
+    color: #000;
     font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
-    font-size: clamp(1.95rem, 3.4vw, 3rem);
-    line-height: 1.08;
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
 }
 
 .about-feed__intro p {
-    margin-bottom: .7rem;
-    font-size: clamp(1rem, 1.3vw, 1.2rem);
-    line-height: 1.52;
-}
-
-.about-feed__stories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .4rem;
-    margin: .35rem 0;
-}
-
-.about-feed__stories span {
-    padding: .25rem .6rem;
-    border: 1px solid rgba(69, 109, 169, .24);
-    border-radius: 999px;
-    color: #2f4e7f;
-    background-color: rgba(255, 255, 255, .75);
-    font-size: .74rem;
-    font-weight: 600;
-    letter-spacing: .02em;
-}
-
-.about-feed__social {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .4rem;
-    margin: 0 0 .2rem;
-}
-
-.about-feed__social span {
-    padding: .25rem .58rem;
-    border-radius: .65rem;
-    color: #456da9;
-    background-color: rgba(69, 109, 169, .12);
-    font-size: .73rem;
-    font-weight: 600;
+    max-width: 35rem;
+    margin-bottom: clamp(1.6rem, 4vw, 3rem);
+    font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.45;
 }
 
 .about-feed__link {
     display: inline-block;
-    margin-top: .3rem;
-    padding: .78rem 1.35rem;
+    padding: clamp(.75rem, 1.6vw, 1.1rem) clamp(1.6rem, 2.6vw, 2.4rem);
     border-radius: 999px;
-    color: #fff;
-    background-color: #456da9;
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .05em;
-    text-transform: uppercase;
+    color: #17335e;
+    background: linear-gradient(135deg, #ffffff 0%, #eaf4ff 45%, #d9ecff 100%);
+    border: 2px solid rgba(69, 109, 169, .25);
+    font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+    font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1;
     text-decoration: none;
+    box-shadow: 0 .55rem 1.1rem rgba(69, 109, 169, .22);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .about-feed__link:hover,
 .about-feed__link:focus-visible {
-    color: #fff;
-    background-color: #294f8c;
+    color: #17335e;
+    background: linear-gradient(135deg, #ffffff 0%, #f2f8ff 40%, #e5f2ff 100%);
+    transform: translateY(-3px) scale(1.03) rotate(-1deg);
+    box-shadow: 0 .85rem 1.4rem rgba(69, 109, 169, .28);
 }
 
-.about-feed__grid {
+.about-feed__gallery {
     position: relative;
-    width: min(100%, 27rem);
+    width: min(100%, 48rem);
+    min-height: clamp(24rem, 57vw, 44rem);
     margin: 0;
     justify-self: start;
-    padding-bottom: 4.35rem;
+    transform: translateX(clamp(.5rem, 1.5vw, 1.8rem));
 }
 
-.about-feed__tile {
+.about-feed__photo {
     margin: 0;
-    border-radius: 1.25rem;
-    overflow: hidden;
-    border: 1px solid rgba(69, 109, 169, .22);
     background-color: #fff;
-    box-shadow: 0 1rem 1.8rem rgba(62, 76, 97, .17);
+    border: 10px solid #fff;
+    box-shadow: 0 1rem 1.8rem rgba(62, 76, 97, .15);
+    overflow: hidden;
 }
 
-.about-feed__tile img {
+.about-feed__photo img {
     display: block;
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-.about-feed__tile--main img {
-    aspect-ratio: 4 / 5;
+.about-feed__photo--landscape {
+    position: relative;
+    width: min(100%, 28rem);
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
 }
 
-.about-feed__tile--accent {
+.about-feed__photo--heart {
     position: absolute;
-    right: -.5rem;
-    bottom: 1.15rem;
-    width: min(43%, 9.6rem);
-    transform: rotate(-3deg);
-}
-
-.about-feed__tile--accent img {
-    aspect-ratio: 3 / 4;
-}
-
-.about-feed__badge {
-    position: absolute;
-    left: -.35rem;
-    bottom: 0;
-    padding: .52rem .7rem;
-    border: 1px solid rgba(69, 109, 169, .22);
-    border-radius: .7rem;
-    color: #334764;
-    background-color: #fff;
-    font-size: .78rem;
-    font-weight: 600;
-    letter-spacing: .03em;
-    box-shadow: 0 .45rem .95rem rgba(62, 76, 97, .1);
-}
-
-.about-feed__bubble {
-    position: absolute;
-    padding: .34rem .6rem;
-    border-radius: .7rem;
-    color: #2f3f58;
-    background-color: rgba(255, 255, 255, .94);
-    border: 1px solid rgba(69, 109, 169, .2);
-    font-size: .76rem;
-    font-weight: 600;
-    box-shadow: 0 .45rem 1rem rgba(62, 76, 97, .12);
-}
-
-.about-feed__bubble--likes {
-    top: .65rem;
-    right: -.45rem;
-}
-
-.about-feed__bubble--shares {
-    right: 1rem;
-    bottom: 3.55rem;
+    left: clamp(4rem, 17vw, 10rem);
+    top: clamp(11rem, 24vw, 16rem);
+    width: clamp(14rem, 30vw, 23rem);
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
+    clip-path: path("M50% 89% C20% 72% 5% 53% 5% 35% C5% 20% 16% 10% 30% 10% C40% 10% 47% 16% 50% 21% C53% 16% 60% 10% 70% 10% C84% 10% 95% 20% 95% 35% C95% 53% 80% 72% 50% 89% Z");
 }
 
 @media (max-width: 991.98px) {
     .about-feed {
         grid-template-columns: 1fr;
-        height: 100vh;
-        gap: .7rem;
-        padding: .95rem;
+        gap: 1rem;
+        padding: 1.4rem 1.1rem 1.8rem;
+        min-height: auto;
     }
 
     .about-feed__intro {
-        max-width: 36rem;
+        max-width: 45rem;
         margin: 0 auto;
         justify-self: center;
         text-align: center;
+        transform: none;
     }
 
-    .about-feed__stories,
-    .about-feed__social {
-        justify-content: center;
-    }
-
-    .about-feed__grid {
-        width: min(100%, 18.5rem);
+    .about-feed__gallery {
+        width: min(100%, 32rem);
+        min-height: 25rem;
         margin: 0 auto;
         justify-self: center;
-        padding-bottom: 3rem;
+        transform: none;
+    }
+
+    .about-feed__photo--heart {
+        left: clamp(3rem, 16vw, 6rem);
+        top: clamp(10.6rem, 34vw, 13rem);
+        width: clamp(12rem, 38vw, 15rem);
     }
 }
 
@@ -242,26 +166,36 @@
     }
 
     .about-feed {
-        gap: .7rem;
-        padding: .85rem;
+        gap: 1.25rem;
+        padding: 1.2rem .85rem 1.5rem;
     }
 
     .about-feed__intro h2 {
-        font-size: clamp(1.7rem, 8vw, 2.2rem);
+        margin-bottom: 1rem;
+        font-size: clamp(2.2rem, 10vw, 3rem);
     }
 
     .about-feed__intro p {
-        margin-bottom: .65rem;
-        font-size: .9rem;
-        line-height: 1.48;
+        margin-bottom: 1.2rem;
+        font-size: clamp(1.1rem, 4.8vw, 1.45rem);
     }
 
-    .about-feed__grid {
-        width: min(100%, 15.5rem);
-        padding-bottom: 2.55rem;
+    .about-feed__link {
+        font-size: clamp(1.2rem, 6vw, 1.6rem);
     }
 
-    .about-feed__bubble {
-        display: none;
+    .about-feed__gallery {
+        width: min(100%, 20rem);
+        min-height: 19rem;
+    }
+
+    .about-feed__photo {
+        border-width: 8px;
+    }
+
+    .about-feed__photo--heart {
+        left: clamp(2rem, 13vw, 3.2rem);
+        top: clamp(8rem, 38vw, 10rem);
+        width: clamp(9.6rem, 53vw, 12.8rem);
     }
 }
