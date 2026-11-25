@@ -23,7 +23,7 @@
         var isAboutPage = currentController == "Home" && currentAction == "About";
     }
     <header>
-        <nav class="site-header navbar navbar-expand-lg navbar-light @(isHomePage ? "site-header--home" : null)" aria-label="Main navigation">
+        <nav class="site-header navbar navbar-expand-lg navbar-light @(isHomePage ? "site-header--home" : null) @(isPackagesPage ? "site-header--packages" : null)" aria-label="Main navigation">
             <div class="site-header__inner container-fluid">
                 <button class="navbar-toggler site-header__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavigation" aria-controls="primaryNavigation"
                         aria-expanded="false" aria-label="Toggle navigation">

@@ -20,7 +20,8 @@
     {
         new { FileName = "petslide.png", Hashtag = "#Pets", Alt = "Pet package collage" },
         new { FileName = "gradslide.png", Hashtag = "#GraduationDump", Alt = "Graduation package collage" },
-        new { FileName = "funslide.png", Hashtag = "#PhotoDump", Alt = "Creative photo package collage" }
+        new { FileName = "funslide.png", Hashtag = "#PhotoDump", Alt = "Creative photo package collage" },
+        new { FileName = "XVSlide.png", Hashtag = "#MyXV", Alt = "Quinceanera package collage" }
     }
     .Where(s => System.IO.File.Exists(System.IO.Path.Combine(Env.WebRootPath, "Pictures", "SlidePackages", s.FileName)))
     .ToList();
@@ -92,8 +93,10 @@ else
                 {
                     var slide = packageSlides[i];
                     <article class="packages-slide @(i == 0 ? "is-active" : null)" data-slide-index="@i" aria-label="Package slide @(i + 1)">
-                        <img src="~/Pictures/SlidePackages/@slide.FileName" asp-append-version="true" alt="@slide.Alt" />
-                        <p class="packages-slide__tag">@slide.Hashtag</p>
+                        <a class="packages-slide__link" asp-controller="Packages" asp-action="Index" aria-label="View packages">
+                            <img src="~/Pictures/SlidePackages/@slide.FileName" asp-append-version="true" alt="@slide.Alt" />
+                            <p class="packages-slide__tag">@slide.Hashtag</p>
+                        </a>
                     </article>
                 }
             </div>
@@ -174,13 +177,6 @@ else
             nextButton?.addEventListener('click', () => {
                 goTo(activeIndex + 1);
                 startAutoplay();
-            });
-
-            slides.forEach((slide, index) => {
-                slide.addEventListener('click', () => {
-                    goTo(index);
-                    startAutoplay();
-                });
             });
 
             slider.addEventListener('mouseenter', stopAutoplay);
