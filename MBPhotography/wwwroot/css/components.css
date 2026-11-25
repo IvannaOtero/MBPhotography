@@ -165,6 +165,43 @@
   border-bottom: 1px solid rgba(77, 111, 171, .16);
 }
 
+.site-header--packages {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  background: transparent;
+  border-bottom: 0;
+}
+
+.site-header--packages .nav-link {
+  color: #cfe3ff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .55);
+}
+
+.site-header--packages .nav-link:hover,
+.site-header--packages .nav-link:focus-visible,
+.site-header--packages .nav-link.active {
+  color: #e8f2ff;
+}
+
+.site-header--packages .site-header__account .nav-link.text-dark,
+.site-header--packages .site-header__account .btn-link.text-dark {
+  color: #cfe3ff !important;
+}
+
+.site-header--packages .site-header__account .nav-link.text-dark:hover,
+.site-header--packages .site-header__account .nav-link.text-dark:focus-visible,
+.site-header--packages .site-header__account .btn-link.text-dark:hover,
+.site-header--packages .site-header__account .btn-link.text-dark:focus-visible {
+  color: #e8f2ff !important;
+}
+
+.site-header--packages .site-header__toggle {
+  border-color: rgba(255, 255, 255, .8);
+}
+
 .site-header__inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -196,7 +233,7 @@
 .site-header .nav-link {
   position: relative;
   padding: .7rem 0;
-  color: #456da9;
+  color: #b3c8e6;
   font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
   font-size: 1.15rem;
   letter-spacing: .035em;
@@ -220,7 +257,7 @@
 .site-header .nav-link:hover,
 .site-header .nav-link:focus-visible,
 .site-header .nav-link.active {
-  color: #294f8c;
+  color: #9fb9df;
 }
 
 .site-header .nav-link:hover,
@@ -267,6 +304,10 @@
 @media (max-width: 991.98px) {
   .site-header {
     padding: 1rem;
+  }
+
+  .site-header--packages {
+    padding: .85rem 1rem;
   }
 
   .site-header__inner {
