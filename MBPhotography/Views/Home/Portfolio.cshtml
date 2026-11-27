@@ -1,6 +1,123 @@
-@{
-    ViewData["Title"] = "Portfolio";
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment Env
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/portfolio.css" asp-append-version="true" />
 }
 
-<h1>Portfolio</h1>
-<p>We're curating a beautiful gallery to share with you. New portfolio highlights are coming soon.</p>
+@{
+    ViewData["Title"] = "Portfolio";
+
+    var portfolioRoot = System.IO.Path.Combine(Env.WebRootPath, "Pictures", "PortfolioPics");
+    var allowedExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ".jpg", ".jpeg", ".png", ".webp"
+    };
+
+    var images = System.IO.Directory.Exists(portfolioRoot)
+        ? System.IO.Directory.GetFiles(portfolioRoot, "*.*", System.IO.SearchOption.AllDirectories)
+            .Where(path => allowedExtensions.Contains(System.IO.Path.GetExtension(path)))
+            .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
+            .Select(path =>
+            {
+                var sessionName = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(path) ?? string.Empty);
+                var relativePath = System.IO.Path.GetRelativePath(Env.WebRootPath, path).Replace('\\', '/');
+
+                return (
+                    SessionName: string.IsNullOrWhiteSpace(sessionName) ? "Portfolio" : sessionName,
+                    Url: $"~/{relativePath}"
+                );
+            })
+            .ToList()
+        : new List<(string SessionName, string Url)>();
+}
+
+<section class="portfolio-page" aria-labelledby="portfolio-heading">
+    <header class="portfolio-page__header">
+        <h1 id="portfolio-heading">Portfolio</h1>
+    </header>
+
+    <p class="portfolio-page__invitation">
+        Welcome to our gallery of treasured moments. Select any photograph to enjoy it in a full-screen view.
+    </p>
+
+    @if (images.Count == 0)
+    {
+        <p class="portfolio-page__empty">No portfolio images were found yet.</p>
+    }
+    else
+    {
+        <div class="portfolio-gallery" aria-label="Portfolio photo gallery">
+            @foreach (var image in images)
+            {
+                <figure class="portfolio-item">
+                    <button type="button"
+                            class="portfolio-item__button"
+                            data-portfolio-open
+                            data-full-src="@Url.Content(image.Url)"
+                            data-session="@image.SessionName"
+                            aria-label="Open @image.SessionName photo fullscreen">
+                        <img src="@image.Url" asp-append-version="true" alt="@image.SessionName photography" loading="lazy" />
+                        <figcaption>@image.SessionName</figcaption>
+                    </button>
+                </figure>
+            }
+        </div>
+    }
+</section>
+
+<div class="portfolio-lightbox" data-portfolio-lightbox hidden>
+    <button type="button" class="portfolio-lightbox__close" data-portfolio-close aria-label="Close fullscreen image">&times;</button>
+    <img class="portfolio-lightbox__image" data-portfolio-image src="" alt="" />
+    <p class="portfolio-lightbox__caption" data-portfolio-caption></p>
+</div>
+
+@section Scripts {
+    <script>
+        (() => {
+            const lightbox = document.querySelector('[data-portfolio-lightbox]');
+            const lightboxImage = document.querySelector('[data-portfolio-image]');
+            const lightboxCaption = document.querySelector('[data-portfolio-caption]');
+            const openButtons = document.querySelectorAll('[data-portfolio-open]');
+            const closeButton = document.querySelector('[data-portfolio-close]');
+
+            if (!lightbox || !lightboxImage || !lightboxCaption || !openButtons.length || !closeButton) return;
+
+            const closeLightbox = () => {
+                lightbox.hidden = true;
+                lightboxImage.src = '';
+                lightboxImage.alt = '';
+                lightboxCaption.textContent = '';
+                document.body.style.overflow = '';
+            };
+
+            openButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const fullSrc = button.getAttribute('data-full-src');
+                    const sessionName = button.getAttribute('data-session') || 'Portfolio';
+
+                    if (!fullSrc) return;
+
+                    lightboxImage.src = fullSrc;
+                    lightboxImage.alt = `${sessionName} photography`;
+                    lightboxCaption.textContent = sessionName;
+                    lightbox.hidden = false;
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeButton.addEventListener('click', closeLightbox);
+
+            lightbox.addEventListener('click', event => {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && !lightbox.hidden) {
+                    closeLightbox();
+                }
+            });
+        })();
+    </script>
+}
